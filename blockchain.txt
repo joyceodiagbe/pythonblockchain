@@ -1,0 +1,2 @@
+[{"previous_hash": "", "index": 0, "transactions": []}, {"previous_hash": "-0-[]", "index": 1, "transactions": [{"sender": "MINING", "recipient": "Max", "amount": 10}]}, {"previous_hash": "-0-[]-1-[{'sender': 'MINING', 'recipient': 'Max', 'amount': 10}]", "index": 2, "transactions": [{"sender": "Max", "recipient": "Manuel", "amount": 5.0}, {"sender": "Max", "recipient": "2", "amount": 2.0}, {"sender": "MINING", "recipient": "Max", "amount": 10}]}]
+[{"sender": "Max", "recipient": "Manuel", "amount": 5.0}, {"sender": "Max", "recipient": "2", "amount": 2.0}]

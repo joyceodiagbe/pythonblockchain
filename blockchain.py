@@ -1,4 +1,5 @@
 import functools
+import json
 
 # Initializing our (empty) blockchain list
 MINED_REWARD = 10
@@ -12,6 +13,24 @@ blockchain = [genesis_block]
 open_transactions = []
 owner = 'Max'
 participants = {'Max'}
+
+
+def load_data():
+    with open('blockchain.txt', mode='r') as f:
+        file_content = f.readlines()
+        global blockchain
+        global open_transactions
+        blockchain = json.loads(file_content[0][:-1])
+        open_transactions = json.loads(file_content[1])
+
+# load_data()
+
+
+def save_data():
+    with open('blockchain.txt', mode='w') as f:
+        f.write(json.dumps(blockchain))
+        f.write('\n')
+        f.write(json.dumps(open_transactions))
 
 
 def hash_block(block):
@@ -71,6 +90,7 @@ def add_transaction(recipient, sender=owner, amount=1.0):
         open_transactions.append(transaction)
         participants.add(sender)
         participants.add(recipient)
+        save_data()
         return True
     return False
 
@@ -89,6 +109,7 @@ def mine_block():
         'transactions': copied_transactions
     }
     blockchain.append(block)
+
     return True
 
 
@@ -156,6 +177,7 @@ while waiting_for_input:
     elif user_choice == '2':
         if mine_block():
             open_transactions = []
+            save_data()
     elif user_choice == '3':
         print_blockchain_elements()
     elif user_choice == '4':
